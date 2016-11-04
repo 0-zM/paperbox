@@ -4,14 +4,13 @@
 <script type="text/javascript" src="paper-full.js"></script>
 <script type="text/paperscript" canvas="myCanvas">
 var green = new Path();
-var counter = 0;
 green.strokeColor = "green";
 green.strokeWidth = 3;
 green.strokeJoin = "round";
 tool.onMouseMove = function(event) {
     tool.fixedDistance = 20;
     green.add(event.point-((event.point+Point(10,10)) % 20));
-    if (counter === 5) {
+    if (Math.random()>0.2) {
             var path = new Path.Circle({
         center: event.point-((event.point+Point(10,10)) % 20),
         radius: 5,
@@ -21,14 +20,12 @@ tool.onMouseMove = function(event) {
             brightness:1
         }
     });
-        counter = 0;
         green.strokeColor= {
             hue: Math.random()*360,
             saturation:1,
             brightness:1
         }
     };
-    counter++;
     while (green.length > 1200) {
         green.removeSegment(0);
     };
