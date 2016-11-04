@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="paper-full.js"></script>
+<script type="text/paperscript" canvas="myCanvas">
+var green = new Path();
+var counter = 0;
+green.strokeColor = "green";
+green.strokeWidth = 3;
+tool.onMouseMove = function(event) {
+    tool.minDistance = 5;
+    green.add(event.point);
+    if (counter === 5) {
+            var path = new Path.Circle({
+        center: event.point,
+        radius: 5,
+        fillColor: {
+            hue: Math.random()*360,
+            saturation:1,
+            brightness:1
+        }
+    });
+        counter = 0;
+        green.strokeColor= {
+            hue: Math.random()*360,
+            saturation:1,
+            brightness:1
+        }
+    };
+    counter++;
+    while (green.length > 1200) {
+        green.removeSegment(0);
+    };
+}
+</script>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+</body>
+</html>
