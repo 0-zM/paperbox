@@ -7,6 +7,7 @@ var green = new Path();
 var counter = 0;
 green.strokeColor = "green";
 green.strokeWidth = 3;
+green.strokeJoin = "round";
 tool.onMouseMove = function(event) {
     tool.minDistance = 5;
     green.add(event.point);
