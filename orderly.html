@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="paper-full.js"></script>
+<script type="text/paperscript" canvas="myCanvas">
+var green = new Path();
+var counter = 0;
+green.strokeColor = "green";
+green.strokeWidth = 3;
+green.strokeJoin = "round";
+tool.onMouseMove = function(event) {
+    tool.minDistance = 5;
+    green.add(event.point-((event.point+Point(5,5)) % 10));
+    if (counter === 5) {
+            var path = new Path.Circle({
+        center: event.point,
+        radius: 5,
+        fillColor: {
+            hue: Math.random()*360,
+            saturation:1,
+            brightness:1
+        }
+    });
+        counter = 0;
+        green.strokeColor= {
+            hue: Math.random()*360,
+            saturation:1,
+            brightness:1
+        }
+    };
+    counter++;
+    while (green.length > 1200) {
+        green.removeSegment(0);
+    };
+}
+</script>
+</head>
+<body>
+<canvas id="myCanvas" data.paper.resize="true" style="width:100%;height:100%"></canvas>
+    <p>
+        Sowas passiert, wenn man mir Internet gibt
+    </p>
+</body>
+</html>
