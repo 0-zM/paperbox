@@ -1,2 +1,1 @@
-# papertest
-Paper.js-Sandkasten
+# paperbox
