@@ -10,7 +10,7 @@ green.strokeJoin = "round";
 tool.onMouseMove = function(event) {
     tool.fixedDistance = 20;
     green.add(event.point-((event.point+Point(10,10)) % 20));
-    if (Math.random()>0.2) {
+    if (Math.random()<0.2) {
             var path = new Path.Circle({
         center: event.point-((event.point+Point(10,10)) % 20),
         radius: 5,
