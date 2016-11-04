@@ -25,11 +25,7 @@ tool.onMouseMove = function(event) {
             brightness:1
         }
     });
-        green.strokeColor= {
-            hue: Math.random()*360,
-            saturation:0.6,
-            brightness:1
-        }
+        green.strokeColor = path.fillColor;
     };
     while (green.length > 2000) {
         green.removeSegment(0);
