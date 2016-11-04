@@ -10,7 +10,7 @@ green.strokeJoin = "round";
 var checkpoint = new Point(0,0);
 var prevpoint = new Point(0,0);
 tool.onMouseMove = function(event) {
-    //tool.fixedDistance = 20;
+    tool.fixedDistance = 20;
     prevpoint = checkpoint
     checkpoint = event.point-((event.point+Point(10,10)) % 20);
     if (checkpoint !== prevpoint){
