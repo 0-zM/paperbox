@@ -9,12 +9,12 @@ green.strokeColor = "green";
 green.strokeWidth = 3;
 green.strokeJoin = "round";
 tool.onMouseMove = function(event) {
-    tool.minDistance = 5;
-    tool.maxDistance = 10;
-    green.add(event.point-((event.point+Point(5,5)) % 10));
+    tool.minDistance = 15;
+    tool.maxDistance = 30;
+    green.add(event.point-((event.point+Point(10,10)) % 20));
     if (counter === 5) {
             var path = new Path.Circle({
-        center: event.point-((event.point+Point(5,5)) % 10),
+        center: event.point-((event.point+Point(10,10)) % 20),
         radius: 5,
         fillColor: {
             hue: Math.random()*360,
