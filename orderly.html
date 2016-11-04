@@ -7,8 +7,13 @@ var green = new Path();
 green.strokeColor = "green";
 green.strokeWidth = 3;
 green.strokeJoin = "round";
+var checkpoint = new Point(0,0);
+var prevpoint = new Point(0,0);
 tool.onMouseMove = function(event) {
-    tool.fixedDistance = 20;
+    //tool.fixedDistance = 20;
+    prevpoint = checkpoint
+    checkpoint = event.point-((event.point+Point(10,10)) % 20);
+    if (checkpoint !== prevpoint){
     green.add(event.point-((event.point+Point(10,10)) % 20));
     if (Math.random()<0.2) {
             var path = new Path.Circle({
@@ -26,8 +31,9 @@ tool.onMouseMove = function(event) {
             brightness:1
         }
     };
-    while (green.length > 1200) {
+    while (green.length > 2000) {
         green.removeSegment(0);
+    };
     };
 }
 </script>
