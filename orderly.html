@@ -13,7 +13,7 @@ tool.onMouseMove = function(event) {
     green.add(event.point-((event.point+Point(5,5)) % 10));
     if (counter === 5) {
             var path = new Path.Circle({
-        center: event.point,
+        center: event.point-((event.point+Point(5,5)) % 10),
         radius: 5,
         fillColor: {
             hue: Math.random()*360,
