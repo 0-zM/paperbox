@@ -9,8 +9,7 @@ green.strokeColor = "green";
 green.strokeWidth = 3;
 green.strokeJoin = "round";
 tool.onMouseMove = function(event) {
-    tool.minDistance = 15;
-    tool.maxDistance = 30;
+    tool.fixedDistance = 20;
     green.add(event.point-((event.point+Point(10,10)) % 20));
     if (counter === 5) {
             var path = new Path.Circle({
