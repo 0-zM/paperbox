@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="paper-full.js"></script>
+<script type="text/paperscript" canvas="myCanvas">
+var green = new Path();
+var newgreen = new Path();
+var cross = []
+var cir = new Path.Circle(
+    {center:Point.random()*view.size,
+    radius:8,
+    fillColor:{hue: Math.random()*360,
+        saturation:1,
+        brightness:1}
+    }
+    );
+green.strokeColor = {
+            hue: Math.random()*360,
+            saturation:1,
+            brightness:1};
+green.strokeWidth = 3;
+green.strokeJoin = "round";
+var snakeLength = 200;
+function isIrrational(element,index,array){
+    return !(Number.isInteger(element.point.x)||Number.isInteger(element.point.y))
+}
+tool.onMouseMove = function(event) {
+    green.add(event.point);
+    while (green.length > snakeLength) {
+        green.removeSegment(0);
+    };
+    if (green.intersects(cir)){
+        snakeLength += 20;
+        //green.strokeColor = cir.color;
+        cir.visible = false;
+        cir = new Path.Circle(
+        {center:Point.random()*view.size,
+        radius:8,
+        fillColor:{hue: Math.random()*360,
+            saturation:1,
+            brightness:1}
+            }
+        );
+    };
+        newgreen.segments = green.segments.slice(-2);
+        cross = green.getCrossings(newgreen)
+        if (cross!=""&&cross.some(isIrrational)){
+        alert("Game over! Score: "+snakeLength);
+        snakeLength = 200;
+        green.removeSegments();
+    };
+}
+</script>
+</head>
+<body>
+<canvas id="myCanvas" data.paper.resize="true" style="width:100%;height:100%"></canvas>
+</body>
+</html>
