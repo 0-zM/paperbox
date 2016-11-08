@@ -48,6 +48,10 @@ tool.onMouseMove = function(event) {
         alert("Game over! Score: "+snakeLength);
         snakeLength = 200;
         green.removeSegments();
+        green.strokeColor = {
+            hue: Math.random()*360,
+            saturation:1,
+            brightness:1};
     };
 }
 </script>
