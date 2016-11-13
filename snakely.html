@@ -21,9 +21,6 @@ green.strokeColor = {
 green.strokeWidth = 3;
 green.strokeJoin = "round";
 var snakeLength = 200;
-function isIrrational(element,index,array){
-    return !(Number.isInteger(element.point.x)||Number.isInteger(element.point.y))
-}
 tool.onMouseMove = function(event) {
     green.add(event.point);
     while (green.length > snakeLength) {
@@ -44,7 +41,7 @@ tool.onMouseMove = function(event) {
     };
         newgreen.segments = green.segments.slice(-2);
         cross = green.getCrossings(newgreen)
-        if (cross!=""&&cross.some(isIrrational)){
+        if (cross.length >= 3){
         alert("Game over! Score: "+snakeLength);
         snakeLength = 200;
         green.removeSegments();
