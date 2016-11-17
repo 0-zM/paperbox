@@ -28,7 +28,7 @@ tool.onMouseMove = function(event) {
     };
     if (green.intersects(cir)){
         snakeLength += 20;
-        green.strokeColor = cir.color;
+        green.strokeColor = cir.fillcolor;
         cir.visible = false;
         cir = new Path.Circle(
         {center:Point.random()*view.size,
