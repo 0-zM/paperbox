@@ -3,29 +3,61 @@
 <head>
 <script type="text/javascript" src="paper-full.js"></script>
 <script type="text/paperscript" canvas="myCanvas">
-var path = new Path.Rectangle(point, size);
+var point = new Point(200, 200);
+var size = new Size(60, 60);
+rects = new Group();
+for (i = 0; i < 32; i++){
+    for (j = 0; j < 32; j++){
+        rects.addChild(new Path.Rectangle(point + new Point(i*60,j*60),size));
+        rects.lastChild.data.co = 0;
+    }
+}
+rects.data.chosen = 1;
+//var path = new Path.Rectangle(point, size);
+//console.log(rects.children);
 var co = 0;
-var colors = [new Color(1,0.2,0.6),new Color(0.6,1,0.2),new Color(0.2,0.6,1)]
-path.fillColor = colors[co];
+var colors = [new Color(0.8,0.6,0.2),new Color(0.6,0.8,0.2),new Color(0.2,0.8,0.6), new Color(0.2,0.6,0.8), new Color(0.6,0.2,0.8), new Color(0.8,0.2,0.6)]
+rects.style = {fillColor : colors[co]};
+var scaler = 40/39;
+//console.log(rects.fillColor);
+//rects.selected = true;
 tool.onKeyDown = function(key){
     if (key.key === "t"){
-        path.scale(17/16);
+        rects.scale(scaler);
         return false;
     }
     else if (key.key === "c"){
-        co = (co + 1) % 3;
-        path.fillColor = colors[co];
+        rects.children[rects.data.chosen].data.co = (rects.children[rects.data.chosen].data.co + 1) % colors.length;
+        rects.children[rects.data.chosen].fillColor = colors[rects.children[rects.data.chosen].data.co];
+        return false;
+    }
+    else if (key.key === "x"){
+        rects.children[rects.data.chosen].data.co = (rects.children[rects.data.chosen].data.co + colors.length - 1) % colors.length;
+        //console.log(rects.children[rects.data.chosen].data.co);
+        rects.children[rects.data.chosen].fillColor = colors[rects.children[rects.data.chosen].data.co];
         return false;
     }
     else if (key.key === "g"){
-        path.scale(16/17);
+        rects.scale(1/scaler);
         return false;        
     }
 }
 
-tool.onMouseDrag = function(key){
-    path.translate(key.delta);
+rects.onMouseDrag = function(key){
+    rects.translate(key.delta);
 }
+rects.onClick = function(click){
+    for (i = 0; i < rects.children.length; i++){
+        if (rects.children[i].contains(click.point)){
+            rects.data.chosen = i;
+            rects.children[i].selected = true;
+        }
+        else {
+            rects.children[i].selected = false;
+        }
+    } 
+}
+
 </script>
     <style>
     </style>
