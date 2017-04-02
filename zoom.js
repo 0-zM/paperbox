@@ -65,7 +65,7 @@ tool.onKeyDown = function(event){
 group.onFrame = function(event){
     group.translate(group.data.translate);
     group.data.translate = group.data.translate * 0.98;
-    group.scale(group.data.scale);
+    group.scale(group.data.scale,view.center);
     group.data.scaleRightNow *= group.data.scale;
     group.data.scale = ((group.data.scale-1)*0.98)+1;
 }
