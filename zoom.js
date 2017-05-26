@@ -1,11 +1,31 @@
-var group = new Group();
-group.data.translate = new Point(0,0);
-group.data.scale = 1;
-group.data.scaleRightNow = 1;
+var group = new Group({
+    data : {
+        translate : new Point(0,0),
+        scale : 1,
+        scaleRightNow : 1
+}});
 var tline;
+var messageBox = new PointText({
+    point : view.center - [0,50],
+    justification : "center",
+    content : "click to create squares\n\
+arrow keys to move around\n\
++/- to zoom\n\
+space to stop moving\n\
+h to display/hide this\n\
+by Milan Zeiske, 2017\
+",
+    fillColor : "#888888",
+    leading : 18,
+    onClick : function(event){
+        if(this.visible){
+            return false;
+        }
+    }   
+});
 view.onClick = function(event){
     tline = new Path.Rectangle(event.point-new Point(20,20),event.point+new Point(20,20));
-    tline.fillColor = "black";
+    tline.fillColor = "blue";
     tline.data.start = true;
     tline.data.on = false;
     tline.data.minimumB = (Math.random()*6+3) / group.data.scaleRightNow;
@@ -13,9 +33,8 @@ view.onClick = function(event){
     tline.data.minimum = tline.data.minimumB;
     tline.data.maximum = tline.data.maximumB;
     tline.onClick = function(event){
-        this.data.on = !this.data.on;
         return false;
-    };
+    }
     tline.onFrame = function(event){
         this.data.minimum = this.data.minimumB * group.data.scaleRightNow;
         this.data.maximum = this.data.maximumB * group.data.scaleRightNow;
@@ -60,7 +79,10 @@ tool.onKeyDown = function(event){
         case "+":
             group.data.scale *= 1/0.99;
             break;
-    }
+        case "h":
+            messageBox.visible = !messageBox.visible;
+            break;
+            }
 }
 group.onFrame = function(event){
     group.translate(group.data.translate);
