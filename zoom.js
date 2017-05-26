@@ -13,7 +13,7 @@ arrow keys to move around\n\
 +/- to zoom\n\
 space to stop moving\n\
 h to display/hide this\n\
-by Milan Zeiske, 2017\
+by Milan Zeiske(0-zm, _zM), 2017\
 ",
     fillColor : "#888888",
     leading : 18,
