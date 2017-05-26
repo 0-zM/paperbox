@@ -25,7 +25,7 @@ by Milan Zeiske, 2017\
 });
 view.onClick = function(event){
     tline = new Path.Rectangle(event.point-new Point(20,20),event.point+new Point(20,20));
-    tline.fillColor = "blue";
+    tline.fillColor = "#0023cc";
     tline.data.start = true;
     tline.data.on = false;
     tline.data.minimumB = (Math.random()*6+3) / group.data.scaleRightNow;
@@ -42,13 +42,13 @@ view.onClick = function(event){
             this.scale(0.99);
             if(this.bounds.width < this.data.minimum){
                 this.data.on = true;
-                this.fillColor = "green";
+                this.fillColor = "#138c00";
             }
         } else {
             this.scale(1/0.99);
             if (this.bounds.width > this.data.maximum){
                 this.data.on = false;
-                this.fillColor = "blue";
+                this.fillColor = "#0023cc";
             }
         }
     }
