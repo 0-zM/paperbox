@@ -63,6 +63,9 @@ var doHorner = function(){
         
         console.log(writtenNumber);
         var writtenDisplay = aText(writtenNumber,i,arrayOfBits.length,0,90);
+        if(i == arrayOfBits.length-1){
+            writtenDisplay.fontWeight = "bold";
+        }
         generalGroup.addChild(writtenDisplay);
 
     }
